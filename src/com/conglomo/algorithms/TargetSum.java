@@ -19,9 +19,9 @@ public class TargetSum {
         Map<Integer, Set<Integer>> map = new HashMap<>();
         for (int i = 0; i < numbers.length; i++) {
             for (int j = i; j < numbers.length; j++) {
-                map.merge(numbers[i], new HashSet<>(Arrays.asList(i == j ? numbers[i] : numbers[i] + numbers[j])), (l1, l2) -> {
-                    Set<Integer> integers = new HashSet<>(l1);
-                    integers.addAll(l2);
+                map.merge(numbers[i], new HashSet<>(Arrays.asList(i == j ? numbers[i] : numbers[i] + numbers[j])), (s1, s2) -> {
+                    Set<Integer> integers = new HashSet<>(s1);
+                    integers.addAll(s2);
                     return integers;
                 });
             }
