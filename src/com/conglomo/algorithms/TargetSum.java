@@ -1,12 +1,9 @@
 package com.conglomo.algorithms;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
 import java.util.Set;
 
 public class TargetSum {
@@ -14,7 +11,8 @@ public class TargetSum {
     public static void main(String[] args) {
         int[] numbers = {1, 5, 5, 10, -11, 10};
         System.out.println(Arrays.toString(findTargetSum(numbers, 20)));
-        System.out.println(Arrays.toString(findTargetSum(numbers, -11)));
+        System.out.println(Arrays.toString(findTargetSum(numbers, -10)));
+        System.out.println(Arrays.toString(findTargetSum(numbers, 10)));
     }
 
     public static Integer[] findTargetSum(int[] numbers, int targetSum) {
@@ -28,12 +26,8 @@ public class TargetSum {
                 });
             }
         }
-        List<Integer> retVal = new ArrayList<>();
-        for (Entry<Integer, Set<Integer>> entry : map.entrySet()) {
-            if (entry.getValue().contains(targetSum)) {
-                retVal.add(entry.getKey());
-            }
-        }
-        return retVal.toArray(new Integer[retVal.size()]);
-    } 
+        return map.keySet().stream()
+                .filter(k -> map.get(k).contains(targetSum))
+                .toArray(Integer[]::new);
+    }
 }
