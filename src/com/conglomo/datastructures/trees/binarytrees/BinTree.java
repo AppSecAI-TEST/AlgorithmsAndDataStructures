@@ -95,7 +95,7 @@ public class BinTree {
     @Override
     public String toString() {
         StringBuilder accum = new StringBuilder("");
-        traverse(TraversalOrder.PREORDER, accum, (node, acc) -> acc.append(" -> ").append(node.element()));
+        traverse(TraversalOrder.INORDER, accum, (node, acc) -> acc.append(" -> ").append(node.element()));
         return accum.toString();
     }
 }

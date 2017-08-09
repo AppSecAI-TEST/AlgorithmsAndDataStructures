@@ -1,7 +1,5 @@
 package com.conglomo.datastructures.trees.binarytrees;
 
-import java.util.function.Function;
-
 public interface BinNode extends Comparable<BinNode> {
     Comparable element();
 

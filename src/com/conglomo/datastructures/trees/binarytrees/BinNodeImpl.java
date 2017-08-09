@@ -2,7 +2,6 @@ package com.conglomo.datastructures.trees.binarytrees;
 
 import java.util.Comparator;
 import java.util.Objects;
-import java.util.function.Function;
 
 class BinNodeImpl implements BinNode {
     private Comparable element;
