@@ -16,7 +16,8 @@ public class ArrayBackedBinTree {
         tree.insert(2);
         tree.insert(20);
         tree.insert(4);
-        tree.traverse(null, null);
+//        tree.traverse(null, null);
+        tree.levelOrder(0);
     }
 
     public void insert(Comparable element) {
@@ -49,6 +50,20 @@ public class ArrayBackedBinTree {
         inOrder(2 * idx + 1);
         visit(data, idx);
         inOrder(2 * idx + 2);
+    }
+
+   private void levelOrder(int... idx) {
+       int level = (int) (Math.log(idx.length) / Math.log(2));
+       int[] ints = new int[(int) Math.pow(2, level + 1)];
+       for (int i = 0, j = 0; j < ints.length / 2; i = i + 2, j++) {
+           if (idx[j] >= data.length) {
+               return;
+           }
+           System.out.println(data[idx[j]]);
+           ints[i] = 2 * (level + j) + 1;
+           ints[i + 1] = 2 * (level + j) + 2;
+       }
+       levelOrder(ints);
     }
 
     private void visit(Comparable[] data, int idx) {

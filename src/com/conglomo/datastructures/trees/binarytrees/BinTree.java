@@ -1,5 +1,8 @@
 package com.conglomo.datastructures.trees.binarytrees;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.function.BiFunction;
 
@@ -61,6 +64,26 @@ public class BinTree {
         inOrder(root.right(), accum, func);
     }
 
+    public <T> void levelOrder() {
+        levelOrder(Collections.singletonList(root), null, null);
+    }
+
+    public <T> void levelOrder(List<BinNode> nodes, T accum, BiFunction<BinNode, T, ?> func) {
+        if (nodes.isEmpty()) {
+            return;
+        }
+        List<BinNode> binNodes = new ArrayList<>();
+        for (BinNode node : nodes) {
+            if (node != null) {
+                System.out.print(node.element() + " ");
+                binNodes.add(node.left());
+                binNodes.add(node.right());
+            }
+        }
+        System.out.println();
+        levelOrder(binNodes, null, null);
+    }
+
     public <T> void postOrder(BinNode root, T accum, BiFunction<BinNode, T, ?> func) {
         if (root == null) {
             return;
@@ -79,8 +102,13 @@ public class BinTree {
         tree.insert(2);
         tree.insert(20);
         tree.insert(4);
-        System.out.println(tree.toString());
-        System.out.println(tree.size());
+        tree.insert(16);
+        tree.insert(31);
+        tree.insert(6);
+//        System.out.println(tree.toString());
+//        System.out.println(tree.size());
+        tree.levelOrder();
+        
     }
 
     public int size() {
